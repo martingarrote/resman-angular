@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    MatMenuModule
+    MatMenuModule,
+    MatExpansionModule
   ],
   exports: [
     MatCommonModule,
@@ -23,7 +25,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    MatMenuModule
+    MatMenuModule,
+    MatExpansionModule
   ]
 })
 export class MaterialImportsModule { }
