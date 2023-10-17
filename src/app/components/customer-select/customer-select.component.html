@@ -1,0 +1,6 @@
+<div>
+    <select>
+        <option value="none">Buscar por ID</option>
+        <option *ngFor="let c of customerList" [value]="c.id">{{c.id}} | {{c.name}}</option>
+    </select>
+</div>

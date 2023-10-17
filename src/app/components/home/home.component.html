@@ -1,5 +1,22 @@
 <main>
-    <mat-expansion-panel hideToggle>
+
+    <div class="filter-menu">
+        <!-- Aqui será o select para definir qual entidade será buscada -->
+        <form [formGroup]="selectForm">
+            <select formControlName="value" (change)="readForm()" class="select-entity">
+                <option [value]="'reservation'">Reserva</option>
+                <option [value]="'customer'">Cliente</option>
+                <option [value]="'room'">Sala</option>
+            </select> 
+        </form>
+        <div class="filter-options">
+            <app-customer-select></app-customer-select>
+        </div>
+        <div class="filter-buttons">
+        </div>
+    </div>
+
+    <!-- <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
             <mat-panel-title>
                 Reserva 1
@@ -8,12 +25,11 @@
                 Reservation for Room 101
             </mat-panel-description>
         </mat-expansion-panel-header>
-        <!-- Conteúdo aqui -->
         <div class="object-content">
             <div class="object-fields">
                 <span>Titulo</span>
                 <p></p>
             </div>
         </div>
-    </mat-expansion-panel>
+    </mat-expansion-panel> -->
 </main>
