@@ -9,8 +9,10 @@
                 <option [value]="'room'">Sala</option>
             </select> 
         </form>
-        <div class="filter-options">
-            <app-customer-select></app-customer-select>
+        <div  class="filter-options">
+            <div *ngIf="filterComponent === 'customer'">
+                <app-customer-select></app-customer-select>
+            </div>
         </div>
         <div class="filter-buttons">
         </div>
