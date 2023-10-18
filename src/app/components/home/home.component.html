@@ -1,37 +1,100 @@
 <main>
-
     <div class="filter-menu">
-        <!-- Aqui será o select para definir qual entidade será buscada -->
-        <form [formGroup]="selectForm">
-            <select formControlName="value" (change)="readForm()" class="select-entity">
-                <option [value]="'reservation'">Reserva</option>
-                <option [value]="'customer'">Cliente</option>
-                <option [value]="'room'">Sala</option>
-            </select> 
-        </form>
-        <div  class="filter-options">
-            <div *ngIf="filterComponent === 'customer'">
-                <app-customer-select></app-customer-select>
-            </div>
+        <div class="filter-header">
+            <h2>Filtros</h2>
+            <form [formGroup]="selectForm">
+                <select formControlName="value" (change)="getSelectedEntity()" class="select-entity">
+                    <option [value]="'reservation'">Reserva</option>
+                    <option [value]="'customer'">Cliente</option>
+                    <option [value]="'room'">Sala</option>
+                </select>
+            </form>
         </div>
-        <div class="filter-buttons">
+        <div class="filter-options disabled">
+            <div class="filter-options-content" *ngIf="filterComponent === 'customer'">
+                <select class="filter-select">
+                    <option value="none">Buscar por ID</option>
+                    <option *ngFor="let c of customerList" [value]="c.id">{{c.id}} - {{c.name}}</option>
+                </select>
+            </div>
+
+            <div class="filter-options-content" *ngIf="filterComponent === 'room'">
+                <select class="filter-select">
+                    <option value="none">Buscar por ID</option>
+                    <option *ngFor="let r of roomList" [value]="r.id">{{r.id}} - {{r.description}}</option>
+                </select>
+                <mat-slide-toggle mat-button color="primary">Salas ocupadas</mat-slide-toggle>
+            </div>
+
+            <div class="filter-options-content" *ngIf="filterComponent === 'reservation'">
+                <select class="filter-select">
+                    <option value="">Buscar por ID</option>
+                    <option *ngFor="let c of reservationList" [value]="c.id">{{c.id}} - {{c.description}}</option>
+                </select>
+                <select class="filter-select">
+                    <option value="">Buscar por Sala</option>
+                    <option *ngFor="let c of roomList" [value]="c.id">{{c.id}} - {{c.description}}</option>
+                </select>
+                <select class="filter-select">
+                    <option value="">Buscar por Cliente</option>
+                    <option *ngFor="let c of customerList" [value]="c.id">{{c.id}} - {{c.name}}</option>
+                </select>
+                <div>
+                    <input class="filter-input" [placeholder]="'Acaba em (dias)'" type="number">
+                    <mat-slide-toggle checked="true" mat-button color="primary">Reservas ativas</mat-slide-toggle>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- <mat-expansion-panel hideToggle>
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                Reserva 1
-            </mat-panel-title>
-            <mat-panel-description>
-                Reservation for Room 101
-            </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div class="object-content">
-            <div class="object-fields">
-                <span>Titulo</span>
-                <p></p>
-            </div>
-        </div>
-    </mat-expansion-panel> -->
+    <app-alert [alertOpen]="alertOpen" [status]="alertStatus" [message]="alertMessage" (closeAlertEvent)="closeAlert()"></app-alert>
+
+    <div class="entity-list customers" *ngIf="filterComponent === 'customer'">
+        <mat-card class="entity-card" *ngFor="let c of customerList">
+            <mat-card-title>{{c.name}}</mat-card-title>
+            <mat-card-subtitle>{{c.email}}</mat-card-subtitle>
+            <mat-card-content>
+                <p><span>CPF: </span>{{c.cpf}}</p>
+                <p><span>Data de nascimento: </span>{{c.dateOfBirth}}</p>
+            </mat-card-content>
+            <mat-card-actions class="entity-buttons">
+                <!-- <button mat-button color="primary">Update</button> -->
+                <button mat-button color="warn" (click)="delete(c.id)">Delete</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+    <div class="entity-list rooms" *ngIf="filterComponent === 'room'">
+        <mat-card class="entity-card" *ngFor="let c of roomList">
+            <mat-card-title>Sala {{c.number}}</mat-card-title>
+            <mat-card-subtitle>{{c.description}}</mat-card-subtitle>
+            <mat-card-content>
+                <p><span>Tamanho: </span>{{c.size}}</p>
+                <p><span>Preço por mês: </span>{{c.pricePerMonth}}</p>
+                <p><span>Ocupada: </span>{{c.busy}}</p>
+            </mat-card-content>
+            <mat-card-actions class="entity-buttons">
+                <!-- <button mat-button color="primary">Update</button> -->
+                <button mat-button color="warn" (click)="delete(c.id)">Delete</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+    <div class="entity-list reservations" *ngIf="filterComponent === 'reservation'">
+        <mat-card class="entity-card" *ngFor="let r of reservationList">
+            <mat-card-title>{{r.code}}</mat-card-title>
+            <mat-card-subtitle>{{r.description}}</mat-card-subtitle>
+            <mat-card-content>
+                <p><span>Cliente: </span>{{r.customer.name}}</p>
+                <p><span>Quarto reservado: </span>{{r.reservedRoom.number}}</p>
+                <p><span>Preço: </span>{{r.reservationPrice}}</p>
+                <p><span>Duração: </span>{{r.duration}} meses</p>
+            </mat-card-content>
+            <mat-card-actions class="entity-buttons">
+                <!-- <button mat-button color="primary">Update</button> -->
+                <button mat-button color="warn" (click)="delete(r.id)">Delete</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
 </main>

@@ -1,0 +1,32 @@
+<main>
+  <app-alert [alertOpen]="alertOpen" [status]="alertStatus" [message]="alertMessage"
+    (closeAlertEvent)="closeAlert()"></app-alert>
+  <mat-card>
+    <h2>Cadastrar cliente</h2>
+    <form class="customer-form" [formGroup]="customerForm">
+      <mat-form-field class="input">
+        <mat-label>Nome</mat-label>
+        <input matInput placeholder="Nome do cliente" formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field class="input">
+        <mat-label>CPF</mat-label>
+        <input matInput placeholder="CPF do cliente" formControlName="cpf">
+      </mat-form-field>
+
+      <mat-form-field class="input">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email do cliente" [type]="'email'" formControlName="email">
+      </mat-form-field>
+
+      <mat-form-field class="input">
+        <input matInput [matDatepicker]="picker" placeholder="Data de nascimento" formControlName="dateOfBirth">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" (click)="saveCustomer()">Cadastrar</button>
+      <button mat-raised-button color="warn" type="reset">Limpar</button>
+    </form>
+  </mat-card>
+</main>

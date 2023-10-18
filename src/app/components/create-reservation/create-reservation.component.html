@@ -1,0 +1,63 @@
+<main>
+    <app-alert [alertOpen]="alertOpen" [status]="alertStatus" [message]="alertMessage"
+    (closeAlertEvent)="closeAlert()"></app-alert>
+    <mat-card>
+        <h2>Cadastrar reserva</h2>
+        <form class="customer-form" [formGroup]="reservationForm">
+            <mat-form-field class="input">
+              <mat-label>Código</mat-label>
+              <input matInput placeholder="Código da reserva" formControlName="code">
+            </mat-form-field>
+            <mat-form-field class="input">
+                <mat-label>Cliente</mat-label>
+                <mat-select formControlName="customer">
+                    <mat-option *ngFor="let c of customerList" [value]="c">
+                        {{c.id}} - {{c.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="input">
+                <mat-label>Sala</mat-label>
+                <mat-select formControlName="reservedRoom">
+                    <mat-option *ngFor="let c of roomList" [value]="c">
+                        {{c.id}} - {{c.description}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="input">
+                <mat-label>Preço</mat-label>
+                <input matInput placeholder="Preço da reserva" formControlName="reservationPrice">
+            </mat-form-field>
+            <mat-form-field class="input">
+                <mat-label>Descrição</mat-label>
+                <input matInput placeholder="Descrição da reserva" formControlName="description">
+            </mat-form-field>
+            <mat-form-field class="input">
+                <mat-label>Duração</mat-label>
+                <input matInput placeholder="Duração da reserva" formControlName="duration">
+            </mat-form-field>
+
+
+            <mat-form-field class="input">
+                <input matInput [matDatepicker]="startDatePicker" placeholder="Data de início" formControlName="startDate">
+                <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #startDatePicker></mat-datepicker>
+              </mat-form-field>
+              
+              <mat-form-field class="input">
+                <input matInput [matDatepicker]="endDatePicker" placeholder="Data de término" formControlName="endDate">
+                <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #endDatePicker></mat-datepicker>
+              </mat-form-field>
+
+
+            <div class="boolean-inputs">
+                <mat-slide-toggle color="primary" formControlName="active">Atividade da reserva</mat-slide-toggle>
+            </div>
+
+
+              <button mat-raised-button color="primary" type="submit" (click)="saveReservation()">Cadastrar</button>
+              <button mat-raised-button color="warn" type="reset">Limpar</button>
+        </form>
+    </mat-card>
+</main>

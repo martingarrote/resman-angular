@@ -1,0 +1,4 @@
+<div class="alert-div" [class]="status" *ngIf="alertOpen">
+  <p>{{ message }}</p>
+  <span (click)="closeAlert()">&#x2715;</span>
+</div>

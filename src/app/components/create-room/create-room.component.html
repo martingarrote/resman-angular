@@ -1,0 +1,31 @@
+<main>
+  <app-alert [alertOpen]="alertOpen" [status]="alertStatus" [message]="alertMessage"
+    (closeAlertEvent)="closeAlert()"></app-alert>
+  <mat-card>
+    <h2>Cadastrar sala</h2>
+    <form [formGroup]="roomForm">
+      <mat-form-field class="input">
+        <mat-label>Número</mat-label>
+        <input matInput placeholder="Número da sala" formControlName="number">
+      </mat-form-field>
+      <mat-form-field class="input">
+        <mat-label>Descrição</mat-label>
+        <input matInput placeholder="Descrição da sala" formControlName="description">
+      </mat-form-field>
+      <mat-form-field class="input">
+        <mat-label>Tamanho</mat-label>
+        <input matInput placeholder="Tamanho da sala" formControlName="size">
+      </mat-form-field>
+      <mat-form-field class="input">
+        <mat-label>Preço mensal</mat-label>
+        <input matInput placeholder="Preço mensal da sala" formControlName="pricePerMonth">
+      </mat-form-field>
+      <div class="boolean-inputs">
+        <mat-slide-toggle color="primary" formControlName="active">Atividade da sala</mat-slide-toggle>
+        <mat-slide-toggle color="primary" formControlName="busy">Ocupação da sala</mat-slide-toggle>
+      </div>
+      <button mat-raised-button color="primary" type="submit" (click)="saveRoom()">Cadastrar</button>
+      <button mat-raised-button color="warn" type="reset">Limpar</button>
+    </form>
+  </mat-card>
+</main>

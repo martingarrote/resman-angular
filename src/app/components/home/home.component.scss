@@ -1,12 +1,12 @@
 main {
-    margin-top: 78px;
     padding: 30px;
 }
 
 mat-expansion-panel {
-    margin: 0 auto 0 auto;
-    width: 450px;
+    margin: 0px auto 0px auto;
+    width: 850px;
 }
+
 
 .select-entity {
     border-radius: 10px;
@@ -18,23 +18,112 @@ mat-expansion-panel {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.select-entity:hover {
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-}
-
 .select-entity:active, .select-entity:focus {
     outline: none;
 }
 
+.select-entity:hover {
+    cursor: pointer;
+    background-color: rgb(250, 250, 250);
+}
+
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+}
+
 .filter-menu {
     background-color: rgb(240, 240, 240);
-    padding: 20px;
+    padding: 20px 30px 20px 30px;
     border-radius: 20px;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+    width: 60%;
+    min-width: 30%;
+    margin: 0px auto 50px auto;
 }
 
 .filter-options {
+    display: flex;
+    flex-wrap: wrap;
     border-radius: 20px;
-    width: auto;
     margin: 20px auto 20px auto;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    user-select: none;
+}
+
+.filter-options-content *:not(:last-child) {
+    margin: 10px;
+}
+
+.filter-select {
+    border-radius: 10px;
+    padding: 6px;
+    width: 200px;
+    border: none;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.filter-select:active, .filter-select:focus {
+    outline: none;
+}
+
+.filter-select:hover {
+    cursor: pointer;
+    background-color: rgb(250, 250, 250);
+}
+
+.filter-input {
+    border-radius: 10px;
+    padding: 6px;
+    width: 200px;
+    border: none;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.filter-input:active, .filter-input:focus {
+    outline: none;
+}
+
+.filter-input[type=number]::-webkit-inner-spin-button, 
+.filter-input[type=number]::-webkit-outer-spin-button { 
+-webkit-appearance: none;
+}
+
+.filter-input::placeholder {
+    color: rgb(75, 75, 75)
+}
+
+.filter-input:hover {
+    background-color: rgb(245, 245, 245);
+}
+
+// Estilização do local de disposição das entidades
+
+.entity-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: left;
+    align-content: left;
+    justify-content: left;
+    width: 60%;
+    margin: auto;
+}
+
+.entity-card {
+    width: 300px;
+    margin: 20px;
+    background-color: rgb(245, 245, 245);
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.entity-card span {
+    color: gray;
+}
+
+.entity-buttons {
+    float: right;
 }
