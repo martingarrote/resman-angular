@@ -4,8 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Participantes
 
-Martin Dambrowski Stabel Garrote
-Ronaldo Adames
+Martin Dambrowski Stabel Garrote e Ronaldo Adames
 
 ## Development server
 
